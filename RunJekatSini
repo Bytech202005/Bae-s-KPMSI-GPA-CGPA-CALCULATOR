@@ -1,0 +1,203 @@
+# Function to convert marks into grades
+def marksGrading(marks):
+    #returning a grade list from function
+    if marks >= 80:
+        return 4.00
+    elif 75 <= marks < 80:
+        return 3.67
+    elif 70 <= marks < 75:
+        return 3.33
+    elif 65 <= marks < 70:
+        return 3.00
+    elif 60 <= marks < 65:
+        return 2.67
+    elif 55 <= marks < 60:
+        return 2.33
+    elif 50 <= marks < 55:
+        return 2.00
+    elif 45 <= marks < 50:
+        return 1.67
+    else:
+        return 0
+
+# Function to calculate total credit points earned #Passing a List to a Function
+def calcCreditPoint(subjects, credit_hours):
+    totalCreditPoint = 0
+    totalPointsEarned = 0
+    #for looping to repeatedly ask user to enter marks of each subject
+    for subject, credit_hour in zip(subjects, credit_hours):
+        marks = int(input(f'Please enter your marks for {subject} :\t'))
+        #call a function to grade each entered mark
+        grade = marksGrading(marks)
+        #formula to calculate earned credit point
+        pointsEarned = grade * credit_hour
+        totalCreditPoint += credit_hour
+        totalPointsEarned += pointsEarned
+    #returns totalcreditPointsEarned and total Total Credit Point from function
+    return totalPointsEarned, totalCreditPoint
+
+# Function to calculate GPA for a semester/passing list subjects and credit_hours into calculateGPA
+def calcGPA(subjects, credit_hours):
+    #call a function to calculate total credit points earned and total credit point
+    totalPointsEarned, totalCreditPoint = calcCreditPoint(subjects, credit_hours)
+    #formula to calculate GPA
+    GPA = totalPointsEarned / totalCreditPoint
+    #returns GPA from function
+    return GPA
+
+# Function to calculate CGPA / passing list(argument)GPA and totalSem into calculateCGPA function
+def calculateCGPA(GPA, totalSem):
+    previousGPA = sum(float(input(f'Enter your GPA for semester {semester + 1}: ')) for semester in range(totalSem - 1))
+    #formula to calculate CGPA
+    CGPA = (previousGPA + GPA) / totalSem
+    #returns CGPA from function
+    return CGPA
+
+# Welcome message
+def welcomeUser():
+    print("\nWelcome to Bae's KPMSI GPA & CGPA Calculator!")
+    print('\n********************************************************************************************')
+
+#Passing list to a Function
+# Function to select subjects and credit hours based on semester and program based on list provided
+def selectSubandCH(program, semester):
+    if program == 'DBIT':
+        if semester == 1:
+            subjects = ["ECO1013 Microeconomics", "MGT1013 Principles of Management", "ITE1093 Introduction to Business IT", "ENG1562 English Language Skills", "ISL1062 Pendidikan Islam / SOC1062 Pendidikan Moral", "FLG1132 Basic Mandarin"]
+            credit_hours = [3, 3, 3, 2, 2, 2]
+        elif semester == 2:
+            subjects = ["ACC1063 Principles of Accounting", "ITE1123 Multimedia for Business", "CSC1233 Principles of Programming", "MKT2013 Principles of Marketing", "ECO2023 Macroeconomics", "KO-Q Co-Curriculum 1"]
+            credit_hours = [3, 3, 3, 3, 3, 1]
+        elif semester == 3:
+            subjects = ["BUS1023 Fundamentals of International Business", "ITE1083 Information System", "CSC1243 Visual Programming", "ITE2513 Internet and E-Commerce", "QMT2043 Business Statistics", "KQU Co-Curriculum"]
+            credit_hours = [3, 3, 3, 3, 3, 1]
+        elif semester == 4:
+            subjects = ["CSC2833 Fundamentals of Database", "LAW2523 Business Law", "MGT2023 Organisation Behaviour", " LOG2603 Principles of Operations Management", "MPU2232 Public Speaking and Communication", "MPU22372 Dinamika Islam di Malaysia"]
+            credit_hours = [3, 3, 3, 3, 2, 2]
+        elif semester == 5:
+            subjects = ["MGT2513 Human Resource Management", "FIN2603 Business Finance", "CSC2663 Database Management System", "SCSC2793 System Analysis and Design for Business", "MPU2162 Pengajian Malaysia 2", "MPU2482 Kemahiran dan Tanggungjawab Sosial"]
+            credit_hours = [3, 3, 3, 3, 2, 2]
+        elif semester == 6:
+            subjects = ["ETR2583 e-Entrepreneurship", "ITE2613 Business Analytics", "CSC2803 Project Management for Business IT", "MGT3533 Business Ethics", "COM2512 Meeting and Interview Skills"]
+            credit_hours = [3, 3, 3, 3, 2]
+        else:
+          print('Wrong semester entered!!! Please try again :0')
+
+    elif program == 'DMK':
+        if semester == 1:
+            subjects = ["ACC 1063 Principles of Accounting", "MGT 1013 Principles of Management", "MKT 1123 Essentials of Marketing", "ENG 1562 English Language Skills", "FLG 1132 Basic Mandarin", "ISL 1062  Pendidkan Islam /SOC 1062 Pendidikan Moral 1"]
+            credit_hours = [3, 3, 3 ,2, 2, 2]
+        elif semester == 2:
+            subjects = ["ITE 3533 Business Information Systems ", "ECO 1013 Microeconomics", "MGT 2023 Organisational Behaviour", "MKT 2623 Fundamentals of Islamic Marketing", "MKT 1063 Consumer Behaviour", "KQB/KQK/1011-1151 Co-Curriculum 1 "]
+            credit_hours = [3, 3, 3, 3, 3, 1]
+        elif semester == 3:
+            subjects = ["MKT 1133 Digital Marketing", "ECO 2023 Macroeconomics ", "MGT 3533 Business Ethics ", "MKT 1073 Product Management", "ITE 1123 Multimedia for Business","KQB/KQK 1011-1151 Co-Curriculum 2"]
+            credit_hours = [3, 3, 3, 3, 3, 1]
+        elif semester == 4:
+            subjects = ["ETR 2583 e-Entrepreneurship", "MKT 2653 Retail Management", "MKT 2613 Integrated Marketing Communication", "ITE 2513 Internet and E-Commerce", "MPU 2232 Public Speaking and Communication"]
+            credit_hours = [3, 3, 3, 3, 2]
+        elif semester == 5:
+            subjects = ["MGT 2512 Human Resource Management", "MKT 1113 Marketing Research", "MKT 2673 Fundamentals of Entrepreneural Marketing ", "FIN 2603 Business Finance", "MPU 2372 Dinamika Islam di Malaysia", "MPU 2482 Kemahiran dan Tanggungjawab Sosial"]
+            credit_hours = [3, 3, 3, 3, 2, 2]
+        elif semester == 6:
+            subjects = ["MKT 2663 International Marketing", "LAW 2523 Business Law", "MKT 2643 Fundamentals of Service Marketing", "MKT 2583 Sales and Event Management", "MPU 2162 Pengajian Malaysia", "COM 2512 Meeting & Interview Skills"]
+            credit_hours = [3, 3, 3, 3, 2, 2]
+        else:
+          print('Wrong semester entered!!! Please try again :0')
+
+    elif program == 'DIB':
+        if semester == 1:
+            subjects = ["ACC 1063 Principles of Accounting", "ECO 1013 Microeconomics", "MGT 1013 Principles of Management", "MKT 2013 Principles of Marketing", "FLG 1132 Basic Mandarin ", "ISL 1062  Pendidkan Islam /SOC 1062 Pendidikan Moral 1"]
+            credit_hours = [3, 3, 3 ,3, 2, 2]
+        elif semester == 2:
+            subjects = ["ITE 3533 Business Information System", "ECO 2023 Macroeconomics", "QMT 2043 Business Statistics", "BUS 1023 Fundamentals of International Business", "ENG 1562 English Language Skills", "KQB/KQK/1011-1151 Co-Curriculum 1 "]
+            credit_hours = [3, 3, 3, 3, 2, 1]
+        elif semester == 3:
+            subjects = ["BUS 2553 Cross Cultural Management", "MKT 1063 Consumer Behaviour", "MGT 2023 Organisational Behaviour ", "MGT 2513 Human Resource Management", "LAW 2033 International Business Law","KQB/KQK 1011-1151 Co-Curriculum 2"]
+            credit_hours = [3, 3, 3, 3, 3, 1]
+        elif semester == 4:
+            subjects = ["LOG 2603 Principles of Operation Management", "ECO 2093 International Economics and Multinational Corporation(MNC)", "ETR 2583 e-Entrepreneurship", "ITE 2513 Internet and E-Commerce", "MPU 2162 Pengajian Malaysia 2", "MPU 2482 Kemahiran dan Tanggungjawab Sosial"]
+            credit_hours = [3, 3, 3, 3, 2, 2]
+        elif semester == 5:
+            subjects = ["FIN 2603 Business Finance", "BUS 2593 International Business Creativity and Innovation", "ITE 1123 Multimedia for Business", "LOG 2063 Principles of Purchasing Management", "MPU 2372 Dinamika Islam di Malaysia", "MPU 2232 Public Speaking and Communication"]
+            credit_hours = [3, 3, 3, 3, 2, 2]
+        elif semester == 6:
+            subjects = ["MGT 3533 Business Ethics", "LOG 3553 Global Supply Chain Management", "BUS 3543 Introduction to International Relations", "BUS 3523 International Business Strategy", "COM 2512 Meeting and Interview Skills"]
+            credit_hours = [3, 3, 3, 3, 2]
+        else:
+          print('Wrong semester entered!!! Please try again :0')
+
+    elif program == 'DEC':
+        if semester == 1:
+            subjects = ["EDU1053 Study Skills", "ENG1203 Introduction to Reading", "ENG1213 Introduction to Writing", "FLG1092 Mandarin Language 1", "ISL1062/SOC1062 Pendidikan Islam/Moral", "KQK/KQS1011-1051 Co-Curriculum 1"]
+            credit_hours = [3, 3, 3 ,2, 2, 1]
+        elif semester == 2:
+            subjects = ["ENG1513 Listening and Speaking Skills", "ENG 1503 Basic Grammar", "ITE1133 Introduction to Information Technology Applications and Multimedia", "FLG1102 Mandarin Language 2", "MPU2232 Public Speaking and Communication", "KQU/KQB1011-1051 Co-Curriculum 2"]
+            credit_hours = [3, 3, 3, 2, 2, 1]
+        elif semester == 3:
+            subjects = ["ENG1543 Advance reading", "COM1183 Business Communication", "ENG1323 English in Media", "ENG1553 Advance Writing", "MPU2372 Dinamika Islam di Malaysia"]
+            credit_hours = [3, 3, 3, 3, 2]
+        elif semester == 4:
+            subjects = ["ENG2593 Literary Studies", "COM2193 Business Communication 2", "COM2533 Critical Literacy", "ENG2333 English in Media 2", "MPU2482 Kemahiran dan Tanggungjawab Sosial"]
+            credit_hours = [3, 3, 3, 3, 2]
+        elif semester == 5:
+            subjects = ["COM2603 Pragmatics in Intercultural Communication", "ETR2583 e-Entrepreneurship", "ENG2603 Varieties of English Language", "ENG2613 Translation 1", "MPU2162 Pengajian Malaysia 2"]
+            credit_hours = [3, 3, 3, 3, 2]
+        elif semester == 6:
+            subjects = ["ITE2633 Introduction of Mobile Application", "COM3593 Workplace Communication", "ENG2623 Translation 2", "ENG2583 Research Proposal Writing"]
+            credit_hours = [3, 3, 3, 3]
+        elif semester == 7:
+            subjects = ["ITR3568 Industrial Training (16 weeks)"]
+            credit_hours = [8]
+        else:
+          print('Wrong semester entered!!! Please try again :0')
+    else:
+      print('Wrong programme entered!!! Please try again :0')
+      exit()
+    #Returning a List from a Function
+    return subjects, credit_hours
+
+#function to ask user whether to calculate CGPA
+def cgpaOption():
+    calcCGPA = input('Would you like to calculate your CGPA? (yes/no): ')
+    #if yes, function will returs True and execute calculation
+    if calcCGPA == 'yes' or calcCGPA == 'Yes' or calcCGPA == 'YES':
+        return True
+    #if no, function will returs False and will not execute calculation
+    elif calcCGPA == 'no' or calcCGPA == 'No' or calcCGPA == 'NO':
+        return False
+    else:
+        print("Invalid input. Please enter 'yes' or 'no'.")
+        return cgpaOption()
+
+# Main function definition
+def main():
+    #call a function to print to welcome users
+    welcomeUser()
+    program = input('\nWhich program are you enrolled in? (DBIT/DMK/DIB/DEC): ')
+    currentSem = int(input('Which semester are you currently in? '))
+    #call a function with arguments(program&currentSem) to returns their subjects and CreditHour
+    subjects, credit_hours = selectSubandCH(program, currentSem)
+    #code under this condition will execute if the variable 'subjects' returned by function above is not empty
+    if subjects:
+        print(f'You are currently in semester {currentSem}\n')
+        #call function to calculate GPA based on returned variables(aubjects & credit hour) / passes lists to function
+        GPA = calcGPA(subjects, credit_hours)
+        print('------------------------------------------------------------------------------------------')
+        print(f'\n\tYour GPA for semester {currentSem} is: {GPA:.2f}\n')
+        print('------------------------------------------------------------------------------------------')
+        #Call function to ask user whether to calculate CGPA
+        if cgpaOption():
+            totalSem = int(input('How many semesters have you completed so far? '))
+            #call function to calculate CGPA / passing list (GPA,totalSem) to a function(calculateCGPA)
+            CGPA = calculateCGPA(GPA, totalSem)
+            print('------------------------------------------------------------------------------------------')
+            print(f'\n\tYour CGPA is: {CGPA:.2f}\n')
+            print('------------------------------------------------------------------------------------------')
+            print('\nBreak a leg for your future ! You can do it')
+    else:
+        print('Invalid program or semester entered!')
+
+# Entry point calling function
+if __name__ == "__main__":
+    main()
